@@ -1,38 +1,5 @@
 
-// // Assignment Code
-// var generateBtn = document.querySelector("#generate");
 
-// // Write password to the #password input
-// function writePassword() {
-//   var password = generatePassword();
-//   var passwordText = document.querySelector("#password");
-//   passwordText.value = password;
-
-// }
-
-// //password Generation
-// var generatedPassword = function generatePassword(lengthReturn, specialReturn, capitalReturn) {
-//   var lengthReturn = getLength();
-//   var specialReturn = hasSpecialCharacters();
-//   var capitalReturn = hasCaptial();
-//   var generatorOutput;
-//   const alphabet = "abcdefghijklmnopqrstuvwxyz"
-//   const randomCharacter = alphabet[Math.floor(Math.random() * alphabet.length)]
-//   if (specialReturn = "Y") {
-//     if (capitalReturn = "Y") {
-//       for (i = 0; i > lengthReturn; i++) {
-//         generatorOutput = generatorOutput + randomCharacter
-//       }
-//       return generatorOutput
-//     }
-//   }
-//   return generatorOutput
-// }
-
-//variables
-var alphabet = "abcdefghijklmnopqrstuvwxyz"
-var randomCharacter = alphabet[Math.floor(Math.random() * alphabet.length)]
-var generatorOutput
 //Getting Length of Password
 function getLength() {
   var length = prompt("Pick password length between 8 and 128")
@@ -42,17 +9,18 @@ function getLength() {
     }
   } else {
     alert("invalid answer");
+    return null
   }
 }
 //Determaining special Characters
 function hasSpecialCharacters() {
-  var specialCharacters = prompt("Would you like to include special characters? Y/N")
-  if (specialCharacters.toUpperCase() == "Y") {
-    return specialCharacters;
+  var hasSpecChar = prompt("Would you like to include special characters? Y/N")
+  if (hasSpecChar.toUpperCase() == "Y") {
+    return hasSpecChar = true;
 
   }
-  else if (specialCharacters.toUpperCase == "N") {
-    return specialCharacters;
+  else if (hasSpecChar.toUpperCase() == "N") {
+    return hasSpecChar = false;
   }
   else {
     console.log("CharacterDebug");
@@ -62,37 +30,61 @@ function hasSpecialCharacters() {
 function hasCaptial() {
   var isCap = prompt("Would you like capital Letters? Y/N")
   if (isCap.toUpperCase() == "Y") {
-    return isCap
+    return isCap = true
   }
   else if (isCap.toUpperCase() == "N") {
-    return isCap
+    return isCap = false
   }
   else {
     console.log("CapitalDebug")
   }
 }
-
-// // Assignment Code
-// var generateBtn = document.querySelector("#generate");
-
-//password Generation
-// var generatedPassword = 
-function generatePassword(lengthReturn, specialReturn, capitalReturn) {
+//Generates Password
+// }
+function generatePassword() {
   var lengthReturn = getLength();
   var specialReturn = hasSpecialCharacters();
   var capitalReturn = hasCaptial();
   var generatorOutput = '';
-  if(specialReturn = "Y") {
-    if(capitalReturn = "Y") {
-      for(i = 0; i > lengthReturn; i++) {
-        // generatorOutput = randomCharacter;
-        // if(i == lengthReturn)
-        // {
-        //   return generatorOutput;
-        // }
-        var runGen = Math.floor(Math.random() * randomCharacter.length); 
-        generatorOutput += randomCharacter.substring(runGen, runGen+1);
-        console.log(runGen)
+  var fullAlphabet = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz!@#$%^&*=+-_?~"
+  var lowAlphabet = "abcdefghijklmnopqrstuvwxyz"
+  var lowSpecAlphabet = "abcdefghijklmnopqrstuvwxyz!@#$%^&*=+-_?~"
+  var fullAlphabetNoSpec = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz"
+
+
+  if (specialReturn) {
+    if (capitalReturn) {
+      for (i = 0; i < lengthReturn; i++) {
+        var randomCharacter = fullAlphabet[Math.floor(Math.random() * fullAlphabet.length)];
+        generatorOutput += randomCharacter;
+        console.log(randomCharacter)
+      }
+      return generatorOutput;
+    } else if(!capitalReturn)
+    {
+      for (i = 0; i < lengthReturn; i++) {
+        var randomCharacter = lowSpecAlphabet[Math.floor(Math.random() * lowSpecAlphabet.length)];
+        generatorOutput += randomCharacter;
+        console.log(randomCharacter)
+      }
+      return generatorOutput;
+    }
+  }else if(!specialReturn)
+  {
+    if (capitalReturn)
+    {
+      for (i = 0; i < lengthReturn; i++) {
+        var randomCharacter = fullAlphabetNoSpec[Math.floor(Math.random() * fullAlphabetNoSpec.length)];
+        generatorOutput += randomCharacter;
+        console.log(randomCharacter)
+      }
+      return generatorOutput;
+    } else if(!capitalReturn)
+    {
+      for (i = 0; i < lengthReturn; i++) {
+        var randomCharacter = lowAlphabet[Math.floor(Math.random() * lowAlphabet.length)];
+        generatorOutput += randomCharacter;
+        console.log(randomCharacter)
       }
       return generatorOutput;
     }
@@ -100,6 +92,8 @@ function generatePassword(lengthReturn, specialReturn, capitalReturn) {
   console.log(generatorOutput);
   return generatorOutput;
 }
+
+
 // Write password to the #password input
 function writePassword() {
   var password = generatePassword();
@@ -109,5 +103,5 @@ function writePassword() {
 }
 // Assignment Code
 var generateBtn = document.querySelector("#generate");
-  // Add event listener to generate button
+// Add event listener to generate button
 generateBtn.addEventListener("click", writePassword);
