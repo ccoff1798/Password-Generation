@@ -135,7 +135,8 @@ function generatePassword() {
           console.log(randomCharacter)
         }
         return generatorOutput;
-      }
+      } else
+      alert("refresh page to reset");
     }
     console.log(generatorOutput);
     return generatorOutput;
