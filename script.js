@@ -12,6 +12,17 @@ function getLength() {
     return null
   }
 }
+
+function hasNum() {
+
+  var hasNumbers = prompt("Do you want it to have numbers?")
+  if (hasNumbers.toUpperCase() == "Y") {
+    return hasNum = true;
+  }
+  else if (hasNumbers.toUpperCase() == "N") {
+    return hasNum = false;
+  }
+}
 //Determaining special Characters
 function hasSpecialCharacters() {
   var hasSpecChar = prompt("Would you like to include special characters? Y/N")
@@ -43,56 +54,93 @@ function hasCaptial() {
 // }
 function generatePassword() {
   var lengthReturn = getLength();
+  var numberReturn = hasNum();
   var specialReturn = hasSpecialCharacters();
   var capitalReturn = hasCaptial();
   var generatorOutput = '';
-  var fullAlphabet = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz!@#$%^&*=+-_?~"
-  var lowAlphabet = "abcdefghijklmnopqrstuvwxyz"
-  var lowSpecAlphabet = "abcdefghijklmnopqrstuvwxyz!@#$%^&*=+-_?~"
-  var fullAlphabetNoSpec = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz"
+  var numFalseCapTrueSpecTrue = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz!@#$%^&*=+-_?~"
+  var numFalseCapFalseSpecFalse = "abcdefghijklmnopqrstuvwxyz"
+  var numFalseCapFalseSpecTrue = "abcdefghijklmnopqrstuvwxyz!@#$%&*=_?"
+  var numFalseCapTrueSpecFalse = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz"
+  var numTrueCapTrueSpecTrue = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz!@#$%&*=_?1234567890"
+  var numTrueCapTrueSpecFalse = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz1234567890"
+  var numTrueCapFalseSpecTrue = "abcdefghijklmnopqrstuvwxyz!@#$%&*=_?1234567890"
+  var numTrueCapFalseSpecFalse = "abcdefghijklmnopqrstuvwxyz1234567890"
 
-
-  if (specialReturn) {
-    if (capitalReturn) {
-      for (i = 0; i < lengthReturn; i++) {
-        var randomCharacter = fullAlphabet[Math.floor(Math.random() * fullAlphabet.length)];
-        generatorOutput += randomCharacter;
-        console.log(randomCharacter)
+  if (numberReturn) {
+    if (specialReturn) {
+      if (capitalReturn) {
+        for (i = 0; i < lengthReturn; i++) {
+          var randomCharacter = numTrueCapTrueSpecTrue[Math.floor(Math.random() * numTrueCapTrueSpecTrue.length)];
+          generatorOutput += randomCharacter;
+          console.log(randomCharacter)
+        }
+        return generatorOutput;
+      } else if (!capitalReturn) {
+        for (i = 0; i < lengthReturn; i++) {
+          var randomCharacter = numTrueCapFalseSpecTrue[Math.floor(Math.random() * numTrueCapFalseSpecTrue.length)];
+          generatorOutput += randomCharacter;
+          console.log(randomCharacter)
+        }
+        return generatorOutput;
       }
-      return generatorOutput;
-    } else if(!capitalReturn)
-    {
-      for (i = 0; i < lengthReturn; i++) {
-        var randomCharacter = lowSpecAlphabet[Math.floor(Math.random() * lowSpecAlphabet.length)];
-        generatorOutput += randomCharacter;
-        console.log(randomCharacter)
+    } else if (!specialReturn) {
+      if (capitalReturn) {
+        for (i = 0; i < lengthReturn; i++) {
+          var randomCharacter = numTrueCapTrueSpecFalse[Math.floor(Math.random() * numTrueCapTrueSpecFalse.length)];
+          generatorOutput += randomCharacter;
+          console.log(randomCharacter)
+        }
+        return generatorOutput;
+      } else if (!capitalReturn) {
+        for (i = 0; i < lengthReturn; i++) {
+          var randomCharacter = numTrueCapFalseSpecFalse[Math.floor(Math.random() * numTrueCapFalseSpecFalse.length)];
+          generatorOutput += randomCharacter;
+          console.log(randomCharacter)
+        }
+        return generatorOutput;
       }
-      return generatorOutput;
-    }
-  }else if(!specialReturn)
-  {
-    if (capitalReturn)
-    {
-      for (i = 0; i < lengthReturn; i++) {
-        var randomCharacter = fullAlphabetNoSpec[Math.floor(Math.random() * fullAlphabetNoSpec.length)];
-        generatorOutput += randomCharacter;
-        console.log(randomCharacter)
-      }
-      return generatorOutput;
-    } else if(!capitalReturn)
-    {
-      for (i = 0; i < lengthReturn; i++) {
-        var randomCharacter = lowAlphabet[Math.floor(Math.random() * lowAlphabet.length)];
-        generatorOutput += randomCharacter;
-        console.log(randomCharacter)
-      }
-      return generatorOutput;
+      return generatorOutput
     }
   }
-  console.log(generatorOutput);
-  return generatorOutput;
+  else if (!numberReturn) {
+    if (specialReturn) {
+      if (capitalReturn) {
+        for (i = 0; i < lengthReturn; i++) {
+          var randomCharacter = numFalseCapTrueSpecTrue[Math.floor(Math.random() * numFalseCapTrueSpecTrue.length)];
+          generatorOutput += randomCharacter;
+          console.log(randomCharacter)
+        }
+        return generatorOutput;
+      } else if (!capitalReturn) {
+        for (i = 0; i < lengthReturn; i++) {
+          var randomCharacter = numFalseCapFalseSpecTrue[Math.floor(Math.random() * numFalseCapFalseSpecTrue.length)];
+          generatorOutput += randomCharacter;
+          console.log(randomCharacter)
+        }
+        return generatorOutput;
+      }
+    } else if (!specialReturn) {
+      if (capitalReturn) {
+        for (i = 0; i < lengthReturn; i++) {
+          var randomCharacter = numFalseCapTrueSpecFalse[Math.floor(Math.random() * numFalseCapTrueSpecFalse.length)];
+          generatorOutput += randomCharacter;
+          console.log(randomCharacter)
+        }
+        return generatorOutput;
+      } else if (!capitalReturn) {
+        for (i = 0; i < lengthReturn; i++) {
+          var randomCharacter = numFalseCapFalseSpecFalse[Math.floor(Math.random() * numFalseCapFalseSpecFalse.length)];
+          generatorOutput += randomCharacter;
+          console.log(randomCharacter)
+        }
+        return generatorOutput;
+      }
+    }
+    console.log(generatorOutput);
+    return generatorOutput;
+  }
 }
-
 
 // Write password to the #password input
 function writePassword() {
